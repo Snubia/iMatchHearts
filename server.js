@@ -9,19 +9,26 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => { // access the route of express module
-    res.render('home');
+    res.render('home', {
+        title:'Home'
+    });
 
 });
 
 // about route
+// takes two argument and the secont is optional and it is an object
 
 app.get('/about', (req, res) => { 
-    res.render('about');
+    res.render('about', {
+        title:'About'
+    });
 
 });
 
 app.get('/contact', (req, res) => { 
-    res.render('contact');
+    res.render('contact', {
+        title:'Contact'
+    });
 
 });
 
