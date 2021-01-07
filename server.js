@@ -69,10 +69,15 @@ app.post('/contactUs', (req, res) => {
         if (err) {
             throw err;
         } else {
-           Message.find({}).then((message) => {
-               if(message) {
+           Message.find({}).then((messages) => {
+               if(messages) {
                    res.render('newmessage', {
-                       tittle: 'Sent'
+                       tittle: 'Sent',
+                       messages:messages
+                   });
+               } else{
+                   res.render('noMessage', {
+                       title: 'Not Found'
                    })
                }
            })
