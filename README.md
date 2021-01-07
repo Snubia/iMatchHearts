@@ -11,3 +11,4 @@ A MERN Stack Dating App with payment options
 5. Nodemon
 6. Bootstrap
 7. Heroku (replace git push heroku master by git push heroku main. Git changed from master to main scr: Stack Overflow )
+8. Body-parser

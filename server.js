@@ -1,6 +1,12 @@
 const express = require('express');
 var exphbs  = require('express-handlebars');
+const bodyParser = require('body-parser')
 const app = express();
+
+// use body parser middleware
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 // port
 const port = process.env.PORT || 3000;
 
