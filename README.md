@@ -9,3 +9,4 @@ A MERN Stack Dating App with payment options
 3. Express-handlebars (template/view engine)
 4. HTML (shitf + ! + enter)
 5. Nodemon
+6. Bootstrap
