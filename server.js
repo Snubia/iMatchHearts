@@ -3,6 +3,8 @@ var exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cookiedParser = require('cookie-parser');
+const session = require('express-session');
 
 // load models
 const Message = require('./models/message');
@@ -16,6 +18,16 @@ const keys = require('./config/keys');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+// configuration for authentication
+app.use(cookiedParser());
+app.use(session({
+    secret: 'mysecret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // connect mLab mongoDB
 mongoose.connect(keys.MongoDb, {

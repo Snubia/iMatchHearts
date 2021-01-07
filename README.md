@@ -15,3 +15,6 @@ A MERN Stack Dating App with payment options
 9. Mongoose
 10. facebook for developers
 11. Passportjs
+12. cookie-parser (generate cookie id in the browser to keep user logged in)
+13. express-session
+14. passport-facebook
