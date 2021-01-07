@@ -13,6 +13,18 @@ app.get('/', (req, res) => { // access the route of express module
 
 });
 
+// about route
+
+app.get('/about', (req, res) => { 
+    res.render('about');
+
+});
+
+app.get('/contact', (req, res) => { 
+    res.render('contact');
+
+});
+
 // access the listen method
 app.listen(port,() => {
     console.log(`Server is conneted on port ${port}`);
