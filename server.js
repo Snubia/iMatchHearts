@@ -2,9 +2,11 @@ const express = require('express');
 var exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // load models
 const Message = require('./models/message');
+const User = require('./models/user');
 const app = express();
 
 // load keys files

@@ -14,3 +14,4 @@ A MERN Stack Dating App with payment options
 8. Body-parser
 9. Mongoose
 10. facebook for developers
+11. Passportjs
