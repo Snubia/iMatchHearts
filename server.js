@@ -69,9 +69,13 @@ app.post('/contactUs', (req, res) => {
         if (err) {
             throw err;
         } else {
-            res.render('newmessage', {
-                title: 'Sent'
-            });
+           Message.find({}).then((message) => {
+               if(message) {
+                   res.render('newmessage', {
+                       tittle: 'Sent'
+                   })
+               }
+           })
         }
     })
 });
