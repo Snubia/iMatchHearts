@@ -16,11 +16,15 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 // connect mLab mongoDB
-mongoose.connect(keys.MongoDb).then(() => {
+mongoose.connect(keys.MongoDb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
     console.log('MongoDB connected')
 }).catch((err) => {
     console.log(err);
 })
+
 // port
 const port = process.env.PORT || 3000;
 
@@ -55,6 +59,21 @@ app.get('/contact', (req, res) => {
 // access post method
 app.post('/contactUs', (req, res) => {
     console.log(req.body);
+    const newMessage = {
+        fullname: req.body.fullname,
+        email: req.body.email,
+        message: req.body.message,
+        date: new Date()
+    }
+    new Message(newMessage).save((err, message) => {
+        if (err) {
+            throw err;
+        } else {
+            res.render('newmessage', {
+                title: 'Sent'
+            });
+        }
+    })
 });
 
 // access the listen method
