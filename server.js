@@ -9,7 +9,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => { // access the route of express module
-    res.send('Hey daters!');
+    res.render('home');
 
 });
 
