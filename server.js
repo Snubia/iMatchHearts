@@ -1,7 +1,8 @@
 const express = require('express');
 var exphbs  = require('express-handlebars');
 const app = express();
-const port = 3000;
+
+const port = process.env.PORT || 3000;
 
 // Set up view engine
 
