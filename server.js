@@ -32,6 +32,10 @@ app.get('/contact', (req, res) => {
     });
 
 });
+// access post method
+app.post('/contactUs', (req, res) => {
+    console.log(req.body);
+});
 
 // access the listen method
 app.listen(port,() => {
