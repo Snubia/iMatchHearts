@@ -2,12 +2,25 @@ const express = require('express');
 var exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+
+// load models
+const Message = require('./models/message');
 const app = express();
+
+// load keys files
+const keys = require('./config/keys');
 
 // use body parser middleware
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+// connect mLab mongoDB
+mongoose.connect(keys.MongoDb).then(() => {
+    console.log('MongoDB connected')
+}).catch((err) => {
+    console.log(err);
+})
 // port
 const port = process.env.PORT || 3000;
 
