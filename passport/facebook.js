@@ -16,8 +16,37 @@ passport.deserializeUser((id, done) => {
 passport.use(new FacebookStrategy({
     clientID: keys.FacebookAppID,
     clientSecret: keys.FacebookAppSecret,
-    callbackURL: 'http://localhost:300/auth/facebook/callback'
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    profileFields: ['email', 'name', 'displayName', 'photos']
 
 }, (accessToken, refreshToken, profile, done) => {
     console.log(profile);
+    User.findOne({
+        facebook:profile.id
+    },
+    (err, user) => {
+        if(err) {
+            return done(err);
+        }
+        if (user) {
+            return done(null, user);
+        } else {
+            const newUser = {
+                facebook: profile.id,
+                fullname: profile.displayName,
+                lastname: profile.name.familyName,
+                firstname: profile.name.givenName,
+                image: `https://graph.facebook.com/${profile.id}/photos?size=large`,
+                email: profile.email[0].value
+            }
+            new User(newUser).save((err, user) => {
+                if(err) {
+                    return done(err);
+                }
+                if(user) {
+                    return done(null,user)
+                }
+            })
+        }
+    })
 }));

@@ -18,3 +18,4 @@ A MERN Stack Dating App with payment options
 12. cookie-parser (generate cookie id in the browser to keep user logged in)
 13. express-session
 14. passport-facebook
+15. Graph API (for facebook profile pic)
