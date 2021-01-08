@@ -29,6 +29,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// load facebook strategy
+require('./passport/facebook');
+
 // connect mLab mongoDB
 mongoose.connect(keys.MongoDb, {
     useNewUrlParser: true,
@@ -70,6 +73,15 @@ app.get('/contact', (req, res) => {
     });
 
 });
+
+// facebook route
+app.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['email']
+}));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+}));
 // access post method
 app.post('/contactUs', (req, res) => {
     console.log(req.body);
