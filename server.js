@@ -82,6 +82,17 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/profile',
     failureRedirect: '/'
 }));
+
+app.get('/profile', (req, res) => {
+    User.findById({id:req.user._id}).then((user) => {
+        if (user) {
+            res.render('profile', {
+                title: 'profile',
+                user: user
+            });
+        }
+    })
+})
 // access post method
 app.post('/contactUs', (req, res) => {
     console.log(req.body);
