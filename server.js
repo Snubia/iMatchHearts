@@ -14,6 +14,9 @@ const app = express();
 // load keys files
 const keys = require('./config/keys');
 
+// Load helpers
+const {requireLogin, ensureGuest} = require('./helpers/auth');
+
 // use body parser middleware
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -57,7 +60,7 @@ const port = process.env.PORT || 3000;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => { // access the route of express module
+app.get('/', ensureGuest, (req, res) => { // access the route of express module
     res.render('home', {
         title:'Home'
     });
@@ -67,14 +70,14 @@ app.get('/', (req, res) => { // access the route of express module
 // about route
 // takes two argument and the secont is optional and it is an object
 
-app.get('/about', (req, res) => { 
+app.get('/about', ensureGuest,(req, res) => { 
     res.render('about', {
         title:'About'
     });
 
 });
 
-app.get('/contact', (req, res) => { 
+app.get('/contact', ensureGuest,(req, res) => { 
     res.render('contact', {
         title:'Contact'
     });
@@ -90,7 +93,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/'
 }));
 
-app.get('/profile', (req, res) => {
+app.get('/profile', requireLogin, (req, res) => {
     User.findById({id:req.user._id}).then((user) => {
         if (user) {
            user.online = true;
