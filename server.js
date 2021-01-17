@@ -86,13 +86,37 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 app.get('/profile', (req, res) => {
     User.findById({id:req.user._id}).then((user) => {
         if (user) {
-            res.render('profile', {
-                title: 'profile',
-                user: user
-            });
+           user.online = true;
+           user.save((err,user) => {
+               if(err) {
+                   throw err;
+               } else {
+                res.render('profile', {
+                    title: 'profile',
+                    user: user
+                });
+               }
+           })
         }
     })
 })
+// log out route
+app.get('/logout', (req, res) => {
+    User.findById({id:req.user._id})
+    .then((user) => {
+        user.online = false;
+        user.save((err,user) => {
+            if(err) {
+                throw err;
+            } if(user) {
+                req.logout();
+                res.redirect('/');
+            }
+        })
+
+    })
+   
+});
 // access post method
 app.post('/contactUs', (req, res) => {
     console.log(req.body);
