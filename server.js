@@ -42,6 +42,9 @@ app.use((req,res, next) => {
 // load facebook strategy
 require('./passport/facebook');
 
+// Load google strategy
+require('./passport/google');
+
 // connect mLab mongoDB
 mongoose.connect(keys.MongoDb, {
     useNewUrlParser: true,
@@ -89,6 +92,13 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email']
 }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+}));
+
+// google routes
+app.get('/auth/google', passport.authenticate('google'));
+app.get('auth/google/callback', passport.authenticate('google', {
     successRedirect: '/profile',
     failureRedirect: '/'
 }));
