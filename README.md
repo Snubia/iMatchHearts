@@ -19,3 +19,4 @@ A MERN Stack Dating App with payment options
 13. express-session
 14. passport-facebook
 15. Graph API (for facebook profile pic)
+16. Console.developers.google.com (for auth using google)
