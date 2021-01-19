@@ -45,7 +45,7 @@ require('./passport/facebook');
 // Load google strategy
 require('./passport/google');
 
-// connect mLab mongoDB
+// connect mongoDB
 mongoose.connect(keys.MongoDb, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -100,7 +100,8 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 app.get('/auth/google', passport.authenticate('google', {
     scope: ['profile']
 }));
-app.get('auth/google/callback', passport.authenticate('google', {
+
+app.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/profile',
     failureRedirect: '/'
 }));
