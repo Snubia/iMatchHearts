@@ -17,5 +17,30 @@ passport.use(new GoogleStrategy ({
     clientSecret: keys.GoogleClientSecret,
     callbackURL: 'http://localhost:3000/auth/google/callback'
 }, (accessToken, RefreshToken, profile, done) => {
-    console.log(profile)
+    console.log(profile);
+
+
+    User.findOne({google:profile.id}, (err, user) => {
+        if(err){
+          return done(err);
+        } if (user) {
+            return done(null, user);
+        } else {
+            const newUser = {
+                firstname: profile.name.givenName,
+                lastname: profile.name.familyName,
+                image: profile.photos[0].value,
+                fullname: profile.displayName,
+                google: profile.id
+            }
+            new User(newUser).save((err, user) => {
+                if(err) {
+                    return done(err);
+                }
+                if(user) {
+                    return done(null, user);
+                }
+            });
+        }
+    });
 }));
