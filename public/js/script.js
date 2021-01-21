@@ -1,3 +1,3 @@
-window.onload = function(){
-    alert('script.js file is connected')
-};
+// window.onload = function(){
+//     alert('script.js file is connected')
+// };
