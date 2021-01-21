@@ -21,3 +21,4 @@ A MERN Stack Dating App with payment options
 15. Graph API (for facebook profile pic)
 16. Console.developers.google.com
 17. Passport-google-oauth20 (npm to authenticate google users)
+18. connect-flash npm to display messages
