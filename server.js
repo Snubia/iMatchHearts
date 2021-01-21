@@ -304,6 +304,8 @@ app.get('/newAccount',(req,res) => {
         title: 'Signup'
     });
 });
+
+// from signup page
 app.post('/signup',(req,res) => {
     //console.log(req.body);
     let errors = [];
@@ -315,7 +317,7 @@ app.post('/signup',(req,res) => {
         errors.push({text:'Password must be at least 5 characters'});
     }
     if (errors.length > 0) {
-        res.render('newAccount',{
+        res.render('newAccount',{ // allows user to only type password in case of a mistake
             errors: errors,
             title: 'Error',
             fullname: req.body.username,
