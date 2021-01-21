@@ -23,3 +23,4 @@ A MERN Stack Dating App with payment options
 17. Passport-google-oauth20 (npm to authenticate google users)
 18. connect-flash npm to display messages
 19. Bcryptjs npm for password encription
+20. Passport-local
