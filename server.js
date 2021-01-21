@@ -295,6 +295,8 @@ app.get('/profile',requireLogin,(req,res) => {
         }
     });
 });
+
+// new Account
 app.get('/newAccount',(req,res) => {
     res.render('newAccount',{
         title: 'Signup'
