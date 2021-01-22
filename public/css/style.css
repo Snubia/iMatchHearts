@@ -9,7 +9,7 @@
 }
 body {
     background-color: #FFF0F5;
-    background-image: url("bcg.jpeg");
+    background-image: url("../img/bcg.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
