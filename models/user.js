@@ -42,7 +42,16 @@ const userSchema = new Schema({
     },
     password: {
         type: String
-    }
+    }, 
+    // solution from the web
+}, {
+    toObject: {
+        virtuals: true,
+      },
+      toJSON: {
+        virtuals: true,
+}
+        
 });
 
 module.exports = mongoose.model('User',userSchema);

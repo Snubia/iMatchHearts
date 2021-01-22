@@ -14,7 +14,15 @@ const messageSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    } 
+    }, 
+    // solution from the web
+}, {
+    toObject: {
+        virtuals: true,
+      },
+      toJSON: {
+        virtuals: true,
+} 
     
   });
   module.exports = mongoose.model('Message', messageSchema );
