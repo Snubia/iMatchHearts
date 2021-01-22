@@ -26,14 +26,16 @@ body {
   
   .card {
     list-style: none;
+    margin-top: 40px;
+    margin-bottom: 45px;
     margin: 10px;
-    padding: 30px;
+    padding: 20px;
     margin: auto;
     width: 40rem;
     max-width: 90%;
   }
 
   .head{
-    color: white;
+    color: rgb(185, 15, 15);
     font-family: cursive;
   }
