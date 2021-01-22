@@ -361,13 +361,14 @@ app.post('/signup',(req,res) => {
         });
     }
 });
+// email login
 app.post('/login',passport.authenticate('local',{
     successRedirect:'/profile',
     failureRedirect: '/loginErrors'
 }));
 app.get('/loginErrors', (req,res) => {
     let errors = [];
-    errors.push({text:'User Not found or Password Incorrect'});
+    errors.push({text:'Incorrect user or password'});
     res.render('home',{
         errors:errors
     });

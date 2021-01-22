@@ -32,3 +32,8 @@ body {
     width: 40rem;
     max-width: 90%;
   }
+
+  .head{
+    color: white;
+    font-family: cursive;
+  }
