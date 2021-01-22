@@ -9,10 +9,11 @@
 }
 body {
     background-color: #FFF0F5;
-    background-image: url("bcg.gif");
-    background-repeat: round;
+    background-image: url("bcg.jpeg");
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    background-size: 2000px 1000px;
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -23,3 +24,11 @@ body {
     margin: auto;
   }
   
+  .card {
+    list-style: none;
+    margin: 10px;
+    padding: 30px;
+    margin: auto;
+    width: 40rem;
+    max-width: 90%;
+  }
