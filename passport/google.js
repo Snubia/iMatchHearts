@@ -114,7 +114,8 @@ passport.deserializeUser((id,done) => {
 passport.use(new GoogleStrategy({
     clientID: keys.GoogleClientID,
     clientSecret: keys.GoogleClientSecret,
-    callbackURL: 'https://vast-cliffs-42692.herokuapp.com/auth/google/callback'
+    //callbackURL: 'https://vast-cliffs-42692.herokuapp.com/auth/google/callback' // for test env
+    callbackURL: 'http://localhost:3000/auth/google/callback' // for dev env
 },(accessToken, refreshToken, profile, done) => {
     console.log(profile);
 
