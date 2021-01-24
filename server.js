@@ -176,6 +176,8 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -183,17 +185,22 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
+
 // Load models
 const Message = require('./models/message');
 const User = require('./models/user');
 const app = express();
+
 // load keys file
 const Keys = require('./config/keys');
+
 // Load Helpers
 const {requireLogin,ensureGuest} = require('./helpers/auth');
+
 // use body parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
 // confirguration for authentication
 app.use(cookieParser());
 app.use(session({
@@ -214,6 +221,7 @@ app.use((req,res,next) =>{
 });
 // setup express static folder to serve js, css files
 app.use(express.static('public'));
+
 // Make user global object
 app.use((req,res, next) => {
     res.locals.user = req.user || null;
@@ -244,7 +252,10 @@ mongoose.connect(Keys.MongoDb, {
 // // environment var for port
 // const port = process.env.PORT || 3000;
 // setup view engine
-app.engine('handlebars',exphbs({defaultLayout:'main'}));
+app.engine('handlebars',exphbs({
+    defaultLayout:'main',
+handlebars: allowInsecurePrototypeAccess(Handlebars) // handlebars runtime
+}));
 app.set('view engine','handlebars');
 
 app.get('/',ensureGuest,(req,res) => {

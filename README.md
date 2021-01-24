@@ -25,3 +25,4 @@ A MERN Stack Dating App with payment options
 19. Bcryptjs npm for password encription
 20. Passport-local
 21. AWS S3 Storage
+22. @handlebars/allow-prototype-access for runtime issues with handlebars
