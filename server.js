@@ -87,7 +87,7 @@
 
 // });
 
-// // facebook route
+// // facebook route ..
 // app.get('/auth/facebook', passport.authenticate('facebook', {
 //     scope: ['email']
 // }));
